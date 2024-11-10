@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/compile")
+@CrossOrigin(origins = "*") // Allow all origins
 public class CppCompilerController {
 
     @Autowired
