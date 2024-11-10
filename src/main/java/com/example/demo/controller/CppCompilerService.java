@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.Program.Call_Func.Call_func;
-import com.example.demo.Program.main.main;
 import com.example.demo.Program.user.user;
+import com.example.demo.Program.main.main;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -29,7 +32,10 @@ public class CppCompilerService {
     private final String expectedFunctionSignature = "int add_nums(int, int)";
 
     @Async("taskExecutor")
-    public CompletableFuture<Void> compileAndVerifyCppCodeAsync(String userFunction) {
+    public CompletableFuture<Map<String, Object>> compileAndVerifyCppCodeAsync(String userFunction) {
+        List<ITestPass> testsPassed = new ArrayList<>();
+        ITestPass.ECodeError errorMessage = null;
+
         try {
             // Step 1: Validate function signature
             if (!validateFunctionSignature(userFunction, expectedFunctionSignature)) {
@@ -42,9 +48,8 @@ public class CppCompilerService {
             saveToFile(tempDir, "user_function.cpp", new user().generateUserFunctionFile(userFunction));
             saveToFile(tempDir, "call_func.cpp", new Call_func().generateCallFuncFile());
             saveToFile(tempDir, "main.cpp", new main().generateMainFile());
-            for(int i=0;i<10;i++) {
-                saveToFile(tempDir, "input"+i+".txt", Files.readString(Paths.get(inputDirectory + "input"+i+".txt")));
-
+            for (int i = 0; i < 10; i++) {
+                saveToFile(tempDir, "input" + i + ".txt", Files.readString(Paths.get(inputDirectory + "input" + i + ".txt")));
             }
 
             ProcessBuilder compileProcessBuilder = new ProcessBuilder(
@@ -60,6 +65,7 @@ public class CppCompilerService {
             // Capture compilation errors
             String compileErrors = new String(compileProcess.getErrorStream().readAllBytes());
             if (!compileErrors.isEmpty()) {
+                errorMessage = ITestPass.ECodeError.COMPILE_ERROR;
                 throw new RuntimeException("Compilation Error:\n" + compileErrors);
             }
 
@@ -70,28 +76,33 @@ public class CppCompilerService {
             runProcess.waitFor();
 
             // Step 6: Verify outputs
-            StringBuilder result = new StringBuilder();
             for (int i = 0; i < 10; i++) {
                 Path generatedOutputFile = Paths.get(tempDir.toString(), "output" + i + ".txt");
-                Path expectedOutputFile = Paths.get(expectedOutputFilePath + "output"+i+".txt");
+                Path expectedOutputFile = Paths.get(expectedOutputFilePath + "output" + i + ".txt");
 
                 String generatedOutput = Files.readString(generatedOutputFile).trim();
                 String expectedOutput = Files.readString(expectedOutputFile).trim();
 
-                if (generatedOutput.equals(expectedOutput)) {
-                    result.append("Test case ").append(i).append(": Passed\n");
-                } else {
-                    result.append("Test case ").append(i).append(": Failed\nGenerated Output:\n")
-                            .append(generatedOutput).append("\nExpected Output:\n").append(expectedOutput).append("\n");
-                }
-            }
+                ITestPass testPass = new ITestPass();
+                testPass.setTestNr(i);
+                testPass.setPoints(1); // Assuming 1 point per test case
+                testPass.setExample(i == 0); // Assuming the first test case is an example
 
-            System.out.println(result.toString());
+                if (generatedOutput.equals(expectedOutput)) {
+                    testPass.setError(null);
+                } else {
+                    testPass.setError(ITestPass.ECodeError.WRONG_ANSWER);
+                }
+
+                testsPassed.add(testPass);
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return CompletableFuture.completedFuture(null);
+
+        return CompletableFuture.completedFuture(Map.of("testsPassed", testsPassed, "errorMessage", errorMessage));
     }
 
     // Validate function signature, allowing line breaks and spaces more flexibly
