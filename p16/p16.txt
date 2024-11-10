@@ -1,0 +1,14 @@
+Roman to Integer
+Given a Roman numeral, convert it to an integer. The input Roman numeral is guaranteed to be a valid Roman numeral between 1 and 3999.
+
+Roman Numeral Rules:
+Roman numerals are represented by the characters: I, V, X, L, C, D, M.
+The numeral values are as follows:
+I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000
+Roman numerals are usually written from largest to smallest from left to right. However, when a smaller numeral appears before a larger numeral, it is subtracted from the larger value (e.g., IV = 4, IX = 9).
+
+Input
+A single line containing a string representing a valid Roman numeral.
+
+Output 
+A single integer representing the integer value of the Roman numeral.

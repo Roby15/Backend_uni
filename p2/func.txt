@@ -1,0 +1,6 @@
+void call_func(ifstream& in, ofstream& out) {
+    int number;
+    in >> number;          // Read the number from the input file
+    bool result = isPalindrome(number) ;  // Call isPalindrome and convert to 1 or 0
+    out << result;         // Write the result to the output file
+}

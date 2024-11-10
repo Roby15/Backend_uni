@@ -1,0 +1,8 @@
+Unique Paths
+You are given an 𝑚×𝑛 grid, where you are located at the top-left corner (0, 0) and want to reach the bottom-right corner (m-1, n-1). You can only move either down or right at any point in time. Determine the number of unique paths from the start to the destination.
+
+Input
+A single line containing two integers, 𝑚 and 𝑛, representing the number of rows and columns of the grid.
+
+Output
+A single integer representing the total number of unique paths from the top-left to the bottom-right of the grid.

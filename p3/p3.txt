@@ -1,0 +1,10 @@
+Find the Longest Word
+Write a program that finds the longest word in a given sentence.
+
+If there are multiple words with the same maximum length, return the first one.
+
+Input
+A single line containing a sentence of words separated by spaces. Each word is composed of alphabetical characters (lowercase and/or uppercase).
+
+Output
+Print the longest word in the sentence. If there are multiple words with the same length, print the first one that appears.

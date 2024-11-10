@@ -1,0 +1,8 @@
+Sum of Two Numbers
+Write a program that reads two integers and outputs their sum.
+
+Input
+The input consists of a single line containing two integers a and b, separated by a space.
+
+Output
+The program should output the sum of the two integers a and b.

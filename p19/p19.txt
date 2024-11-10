@@ -1,0 +1,12 @@
+Happy Number
+A "happy number" is a number defined by the following process:
+
+Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number either equals 1 (where it will stay), or it loops endlessly in a cycle that does not include 1.
+If the process results in 1, the number is a happy number. If not, it is an unhappy number. Given a number, determine if it is a happy number.
+
+Input
+A single integer 𝑛, the number to check for happiness.
+
+Output 
+A single line with the word "Happy" if the number is a happy number, or "Unhappy" if it is not.

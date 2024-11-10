@@ -1,0 +1,9 @@
+Longest Common Subsequence (LCS)
+Problem Statement: Given two strings, find the length of their longest common subsequence (LCS).
+
+Input Format:
+Two integers n and m representing the lengths of the two string.
+Two strings.
+
+Output Format:
+A single integer representing the length of the LCS.

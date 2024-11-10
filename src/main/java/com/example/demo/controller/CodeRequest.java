@@ -2,9 +2,9 @@ package com.example.demo.controller;
 
 public class CodeRequest {
     private String code;
-    private int problemId;
+    private int problemID;
 
-    // Getters and Setters
+    // Getters and setters
     public String getCode() {
         return code;
     }
@@ -13,11 +13,11 @@ public class CodeRequest {
         this.code = code;
     }
 
-    public int getProblemId() {
-        return problemId;
+    public int getProblemID() {
+        return problemID;
     }
 
-    public void setProblemId(int problemId) {
-        this.problemId = problemId;
+    public void setProblemID(int problemID) {
+        this.problemID = problemID;
     }
 }

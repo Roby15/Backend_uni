@@ -1,0 +1,8 @@
+Reverse Integer
+Given a 32-bit signed integer, reverse the digits of the number. If reversing the integer causes it to go outside the range of a 32-bit signed integer, return 0.
+
+Input
+A single integer 𝑛, the integer to be reversed.
+
+Output 
+A single integer representing the reversed number. If the reversed number exceeds the 32-bit integer range, return 0.

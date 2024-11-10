@@ -1,0 +1,9 @@
+Unique Elements in an Array
+Given an array of integers, print all unique elements in ascending order.
+
+Input 
+The first line contains an integer n, representing the size of the array.
+The second line contains n space-separated integers representing the elements of the array.
+
+Output 
+A single line containing the unique elements in ascending order, separated by spaces.

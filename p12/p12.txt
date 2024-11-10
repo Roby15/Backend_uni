@@ -1,0 +1,10 @@
+Longest Common Prefix
+Write a function to find the longest common prefix string amongst an array of strings.
+If there is no common prefix, return an empty string "".
+
+Input
+An integer ?? denoting the number of strings in the array.
+A list of ?? strings, provided one per line.
+
+Output
+A string repesenting the longest common prefix or an empty string if there is none

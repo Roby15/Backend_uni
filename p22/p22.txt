@@ -1,0 +1,10 @@
+Breadth-First Search (BFS)
+Given an undirected, unweighted graph represented by nodes and edges, perform a Breadth-First Search (BFS) starting from a specified node. Return the order of nodes visited in BFS order. Assume nodes are labeled from 1 to 𝑛.
+
+Input 
+The first line contains two integers 𝑛 and m, where 𝑛 is the number of nodes and 𝑚 is the number of edges in the graph.
+The next 𝑚 lines each contain two integers 𝑢 and 𝑣, indicating an undirected edge between nodes 𝑢 and 𝑣.
+The last line contains an integer 𝑠, the starting node for the BFS.
+
+Output
+A single line with the order of nodes visited in BFS, separated by spaces.

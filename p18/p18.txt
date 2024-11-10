@@ -1,0 +1,10 @@
+Pascal's Triangle
+Given a non-negative integer 𝑛, generate the first 𝑛 rows of Pascal's Triangle.
+
+In Pascal's Triangle, each number is the sum of the two numbers directly above it. The triangle starts with the number 1 at the top.
+
+Input 
+A single integer 𝑛, the number of rows of Pascal's Triangle to generate.
+
+Output
+𝑛 lines, where each line represents a row of Pascal's Triangle. Each row's elements should be separated by a single space.

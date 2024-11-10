@@ -1,0 +1,9 @@
+Merge Intervals
+You are given a list of intervals, where each interval is represented as [start, end]. Your task is to merge all overlapping intervals and return a list of the merged intervals in ascending order of their start times. Two intervals [a, b] and [c, d] overlap if b >= c.
+
+Input 
+The first line contains a single integer 𝑛, the number of intervals.
+Each of the next 𝑛 lines contains two integers, representing the start and end of each interval.
+
+Output
+Print the merged intervals, each on a new line, in the form [start, end].

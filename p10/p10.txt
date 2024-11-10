@@ -1,0 +1,8 @@
+Prime Factorization 
+ Write a program that performs prime factorization of a given integer. Return the factors in ascending order.
+
+Input
+A single integer n
+
+Output
+A space-separated list of integers representing the prime factors of n

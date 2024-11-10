@@ -1,0 +1,8 @@
+Count Vowels and Consonants
+Given a string s, count the number of vowels and consonants in the string.
+
+Input 
+A single string s containing only alphabetical characters (lowercase and uppercase).
+
+Output Format
+Two integers separated by a space: the count of vowels and the count of consonants, respectively.

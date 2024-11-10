@@ -1,0 +1,5 @@
+void call_func(ifstream& in, ofstream& out) {
+            int x, y;
+            in >> x >> y;
+            int res = add_nums(x, y);
+            out << res;}

@@ -1,0 +1,18 @@
+Valid Parentheses
+Given a string containing just the characters '(', ')', '{', '}', '[', and ']', determine if the input string is valid.
+An input string is valid if:
+
+The brackets must close in the correct order.
+Every opening bracket has a corresponding closing bracket.
+For example:
+
+"()" is valid.
+"()[]{}" is valid.
+"(]" is not valid.
+"([)]" is not valid.
+"{[]}" is valid.
+Input
+A single string containing only the characters '(', ')', '{', '}', '[', and ']'.
+
+Output
+A single line: "Valid" if the parentheses are valid, or "Invalid" if they are not.

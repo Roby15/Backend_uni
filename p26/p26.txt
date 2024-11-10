@@ -1,0 +1,9 @@
+Sort Vector
+Problem Statement:
+Given a vector (or array) of integers, sort the elements in ascending order and return the sorted vector.
+
+Input
+A single vector of integers nums[] of length 𝑛, where 1≤𝑛≤1000 and -10^6≤nums[i]≤10^6.
+
+Output
+A sorted vector in ascending order.	

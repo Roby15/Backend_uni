@@ -1,0 +1,8 @@
+Factorial
+Given a non-negative integer n, compute its factorial.
+
+Input 
+A single integer n (Max 20).
+
+Output 
+A number representing the factorial of n (n!).

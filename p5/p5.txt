@@ -1,0 +1,8 @@
+Reverse a String
+Write a program that reverses a given string.
+
+Input
+A single string s (1 ≤ length of s ≤ 1000).
+
+Output
+Print the reversed string.

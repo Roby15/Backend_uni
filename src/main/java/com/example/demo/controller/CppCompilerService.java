@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import com.example.demo.model.CompileRequest;
 
 @Service
 public class CppCompilerService {
@@ -32,24 +33,25 @@ public class CppCompilerService {
     private final String expectedFunctionSignature = "int add_nums(int, int)";
 
     @Async("taskExecutor")
-    public CompletableFuture<Map<String, Object>> compileAndVerifyCppCodeAsync(String userFunction) {
+    public CompletableFuture<Map<String, Object>> compileAndVerifyCppCodeAsync(String userFunction,int problemId) throws IOException {
         List<ITestPass> testsPassed = new ArrayList<>();
         ITestPass.ECodeError errorMessage = null;
-
+        Path filePathfun = Paths.get(outputDirectory+"p"+problemId+"/"+ "func.txt");
+        String fileContent = Files.readString(filePathfun);
+        Path filePathhed = Paths.get(outputDirectory+"p"+problemId+"/"+ "header.txt");
+        String fileContenthed = Files.readString(filePathhed);
         try {
+
             // Step 1: Validate function signature
-            if (!validateFunctionSignature(userFunction, expectedFunctionSignature)) {
-                throw new IllegalArgumentException("Function signature does not match the expected format.");
-            }
 
             // Step 3: Save code to a temporary file
             Path tempDir = Files.createTempDirectory("cppCode");
-            saveToFile(tempDir, "user_function.h", new user().generateUserFunctionHeader());
+            saveToFile(tempDir, "user_function.h", new user().generateUserFunctionHeader(fileContenthed));
             saveToFile(tempDir, "user_function.cpp", new user().generateUserFunctionFile(userFunction));
-            saveToFile(tempDir, "call_func.cpp", new Call_func().generateCallFuncFile());
+            saveToFile(tempDir, "call_func.cpp", new Call_func().generateCallFuncFile(fileContent));
             saveToFile(tempDir, "main.cpp", new main().generateMainFile());
             for (int i = 0; i < 10; i++) {
-                saveToFile(tempDir, "input" + i + ".txt", Files.readString(Paths.get(inputDirectory + "input" + i + ".txt")));
+                saveToFile(tempDir, "input" + i + ".txt", Files.readString(Paths.get(inputDirectory +  "p"+problemId+"/" + "input" + i + ".txt")));
             }
 
             ProcessBuilder compileProcessBuilder = new ProcessBuilder(
@@ -78,16 +80,16 @@ public class CppCompilerService {
             // Step 6: Verify outputs
             for (int i = 0; i < 10; i++) {
                 Path generatedOutputFile = Paths.get(tempDir.toString(), "output" + i + ".txt");
-                Path expectedOutputFile = Paths.get(expectedOutputFilePath + "output" + i + ".txt");
+                Path expectedOutputFile = Paths.get(expectedOutputFilePath + "p"+problemId+"/" + "output" + i + ".txt");
 
                 String generatedOutput = Files.readString(generatedOutputFile).trim();
                 String expectedOutput = Files.readString(expectedOutputFile).trim();
 
                 ITestPass testPass = new ITestPass();
                 testPass.setTestNr(i);
-                testPass.setPoints(1); // Assuming 1 point per test case
+                testPass.setPoints(10); // Assuming 1 point per test case
                 testPass.setExample(i == 0); // Assuming the first test case is an example
-                testPass.setProblemId(i); // Set the problemId
+                testPass.setProblemId(problemId);// Set the problemId
 
                 if (generatedOutput.equals(expectedOutput)) {
                     testPass.setError(null);
@@ -102,19 +104,14 @@ public class CppCompilerService {
             e.printStackTrace();
         }
 
-        return CompletableFuture.completedFuture(Map.of("testsPassed", testsPassed, "errorMessage", errorMessage));
+        return CompletableFuture.completedFuture(Map.of(
+                "testsPassed", testsPassed != null ? testsPassed : new ArrayList<>(),
+                "errorMessage", errorMessage != null ? errorMessage : ""
+        ));
     }
 
     // Validate function signature, allowing line breaks and spaces more flexibly
-    private boolean validateFunctionSignature(String userFunction, String expectedSignature) {
-        // Remove all newline characters and extra spaces to make validation easier
-        String normalizedFunction = userFunction.replaceAll("\\s+", " ").trim();
 
-        // Updated regex to allow parameter names with flexible formatting
-        String regex = "^int\\s+add_nums\\s*\\(\\s*int\\s+\\w+\\s*,\\s*int\\s+\\w+\\s*\\)\\s*\\{.*";
-
-        return normalizedFunction.matches(regex);
-    }
 
     private void saveToFile(Path directory, String filename, String content) throws IOException {
         Path filePath = directory.resolve(filename);

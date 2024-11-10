@@ -1,0 +1,11 @@
+Spiral Matrix
+Given an 𝑀×𝑁 matrix of integers, return all elements of the matrix in spiral order, starting from the top-left element and proceeding in a clockwise direction.
+
+Input 
+The first line contains two integers 
+𝑀 and 𝑁, representing the number of rows and columns in the matrix, respectively.
+The next 
+𝑀 lines each contain 𝑁 integers separated by spaces, representing the elements of the matrix.
+
+Output 
+A single line with the elements of the matrix in spiral order, separated by spaces.

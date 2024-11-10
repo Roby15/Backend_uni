@@ -1,0 +1,9 @@
+Third Maximum Number
+Given an array of integers, find the third distinct maximum number in the array. If the third maximum does not exist, return the maximum number. The numbers in the array may include duplicates, but only distinct values should be considered.
+
+Input
+The first line contains a single integer 𝑛, the number of elements in the array.
+The second line contains 𝑛 integers, representing the elements of the array.
+
+Output
+A single integer, which is the third distinct maximum number in the array if it exists, otherwise the maximum number in the array.

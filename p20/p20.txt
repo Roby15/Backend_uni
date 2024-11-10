@@ -1,0 +1,13 @@
+Ugly Number
+An "ugly number" is a positive integer whose prime factors only include 2, 3, and 5. By convention:
+
+1 is considered an ugly number.
+Any positive integer that can be factored only by the numbers 2, 3, and 5 is considered ugly.
+If a number has any prime factor other than 2, 3, or 5, it is not an ugly number.
+Given a number 𝑛, determine if it is an ugly number.
+
+Input
+A single integer 𝑛, the number to check.
+
+Output 
+A single line with the word "Ugly" if the number is an ugly number, or "Not Ugly" if it is not.

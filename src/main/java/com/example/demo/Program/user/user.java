@@ -16,15 +16,16 @@ public class user {
         """.replace("{{USER_FUNCTION}}", userFunction);
     }
 
-    public String generateUserFunctionHeader() {
+    public String generateUserFunctionHeader(String userFunction) {
         return """
         #ifndef USER_FUNCTION_H
         #define USER_FUNCTION_H
 
-        int add_nums(int, int);
+                {{USER_FUNCTION}}
+                                               
 
         #endif // USER_FUNCTION_H
-        """;
+        """.replace("{{USER_FUNCTION}}", userFunction);
     }}
 
 

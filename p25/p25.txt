@@ -1,0 +1,9 @@
+Combinations
+Problem Statement:
+Given two integers 𝑛 and 𝑘, return all possible combinations of 𝑘 numbers chosen from the range [1, 𝑛]. Return the answer in ascending order.
+
+Input
+Two integers 𝑛 and 𝑘, where 1≤𝑘≤𝑛≤20
+
+Output
+A list of lists, where each inner list is a combination of 𝑘 numbers chosen from [1, 𝑛].

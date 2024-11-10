@@ -40,9 +40,7 @@ public class ITestPass {
         this.example = example;
     }
 
-    public int getProblemId() {
-        return problemId;
-    }
+
 
     public void setProblemId(int problemId) {
         this.problemId = problemId;
@@ -52,6 +50,6 @@ public class ITestPass {
         COMPILE_ERROR,
         TIME_LIMIT_EXCEEDED,
         MEMORY_LIMIT_EXCEEDED,
-        WRONG_ANSWER
+        JSON_PARSE_ERROR, WRONG_ANSWER
     }
 }
