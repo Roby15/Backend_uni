@@ -5,6 +5,7 @@ public class ITestPass {
     private ECodeError error;
     private int points;
     private boolean example;
+    private int problemId; // Add this field
 
     // Getters and Setters
     public int getTestNr() {
@@ -38,6 +39,15 @@ public class ITestPass {
     public void setExample(boolean example) {
         this.example = example;
     }
+
+    public int getProblemId() {
+        return problemId;
+    }
+
+    public void setProblemId(int problemId) {
+        this.problemId = problemId;
+    }
+
     public enum ECodeError {
         COMPILE_ERROR,
         TIME_LIMIT_EXCEEDED,

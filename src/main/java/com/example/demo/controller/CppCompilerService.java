@@ -87,6 +87,7 @@ public class CppCompilerService {
                 testPass.setTestNr(i);
                 testPass.setPoints(1); // Assuming 1 point per test case
                 testPass.setExample(i == 0); // Assuming the first test case is an example
+                testPass.setProblemId(i); // Set the problemId
 
                 if (generatedOutput.equals(expectedOutput)) {
                     testPass.setError(null);
@@ -95,7 +96,6 @@ public class CppCompilerService {
                 }
 
                 testsPassed.add(testPass);
-
             }
 
         } catch (Exception e) {
